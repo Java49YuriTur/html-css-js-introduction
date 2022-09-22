@@ -1,14 +1,27 @@
+body{
+    display: flex;
+    flex-direction: column;
+    background-color: burlywood;
+}
 .logo{
-font-size: 3em;
+font-size: 2em;
+background-color: bisque;
+display: block;
+text-align: center;
 }
 .main-class{
 
 }
 .details-container{
-    
+    display: flex;
+    flex-direction:column;
+    align-items: center;
+    margin-top: 2.5vh;
 }
 .details-image{
-   
+   width: 70vw;
+   height: 60vw;
+   border-radius: 25%;
     
 }
 .details-title{
@@ -16,16 +29,34 @@ font-size: 3em;
 }
 .thumbnails-list{
     list-style: none;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    max-height: 25vh;
+    overflow-y: auto;
+    justify-content: space-around;
+    padding-left: 0;
 }
 .thumbnails-item{
-
+    overflow-y: hidden;
+    width: 20vw;
+    margin-top: 2.5vh;
+    border:solid 1px blue;
+    border-radius: 25%;
+}
+.thumbnails-image{
+    width: 20vw;
+    height: 15vw;
 }
 .thumbnails-title{
     display: block;
-}
-.thumbnails-anchor{
-    
-}
-.thumbnails-image{
+    text-align: center;
+    height: 5vw;
+    background-color: beige;
+    margin-top: -4px;
    
 }
+.thumbnails-anchor{
+   text-decoration: none;
+}
+
