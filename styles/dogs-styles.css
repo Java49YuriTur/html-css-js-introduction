@@ -101,4 +101,34 @@ overflow: hidden;
         height: 30vw;
 
     }
+    .details-container{
+        justify-content: center;
+    }
+}
+@media (min-width:900px){
+    .thumbnails-list{
+        order: -1;
+        padding-right: 2vw;
+      
+    }
+    .details-image{
+        width: 45vw;
+        height: 35vw;
+        
+    }
+    .details-title{
+        font-size: 50px;
+    }
+    .thumbnails-item{
+        border:solid 6px rgba(15, 244, 34, 0.994);
+    }
+    .logo{
+        background-color: chartreuse;
+        font-size: 80px;
+    }
+    .thumbnails-title{
+        background-color:rgba(14, 245, 210, 0.894) ;
+        font-size: 50px;
+    }
+
 }
