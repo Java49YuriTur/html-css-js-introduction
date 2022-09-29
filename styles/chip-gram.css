@@ -63,13 +63,14 @@ body {
 }
 
 .details-title {
+    font-size: 0.8em;
     display: block;
     font-family: airstream;
     font-style: italic;
     background-color: beige;
     position: absolute;
-    left: 3vw;
-    bottom: 2vw;
+    left: 12vw;
+    bottom: 5vw;
 
 
 }
@@ -174,8 +175,9 @@ body {
         
 
         .details-title {
-            font-size: 1.5em;
-            bottom: 9vw
+            font-size: 1.2em;
+            bottom: 45vw;
+            left: 4vw;
         }
 
         .details-image {
