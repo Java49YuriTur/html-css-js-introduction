@@ -45,6 +45,7 @@ body {
     flex-direction: column;
     justify-content: center;
     flex-grow: 1;
+    background-color: rgb(186, 201, 215);
 }
 .main-class.hidden {
     
@@ -88,8 +89,6 @@ body {
     font-size: 2em;
     left: 0;
     bottom: 2vh;
-
-
 
 }
 
@@ -142,13 +141,13 @@ body {
 
 @media(min-width: 560px) {
     :root {
-        --thumbnails-img-width: 12vw;
-        --thumbnails-img-height: 8vw;
+        --thumbnails-img-width: 18vw;
+        --thumbnails-img-height: 13vw;
         --thumbnails-title-height: calc(var(--thumbnails-img-height)* 0.25)
     }
 
     .logo {
-        font-size: 1.8em;
+        font-size: 3em;
     }
 
     .thumbnails-list {
@@ -157,8 +156,30 @@ body {
         max-height: 75vh;
         order: -1;
         justify-content: flex-start;
+        width: 25vw;
+        background-color: rgb(205, 220, 220);
+        padding-left:10vw;
+        
+        
     }
-
+    
+    .hidden .thumbnails-list {
+        flex-direction: row;
+        flex-wrap: wrap;   
+        width: 90vw;
+        max-height: 80vh;
+        justify-content: space-around;
+        padding-right: 10vw;
+          
+    }
+    .hidden .thumbnails-item {
+        margin: 3vw;
+    }
+    
+    .hidden .thumbnails-title {
+        font-size: 2.5em;
+    }
+    
     .main-class {
         flex-direction: row;
         justify-content: space-around;
@@ -169,7 +190,7 @@ body {
         width: 45vw;
         height: 38vw;
     }
-
+    
     .details-container {
         justify-content: center;
         align-items: center;
@@ -185,17 +206,13 @@ body {
         }
 
         .thumbnails-title {
-            font-size: 1.5em;
+            font-size: 3em;
         }
 
         .details-container {
             margin-top: 5vh;
             margin-right: 5vw;
         }
-
-
-
-        
 
         .details-image {
             width: 45vw;
