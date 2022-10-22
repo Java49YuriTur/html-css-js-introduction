@@ -48,7 +48,9 @@ body {
     background-color: rgb(186, 201, 215);
 }
 .main-class.hidden {
-    
+    --thumbnails-img-width: 35vw;
+    --thumbnails-img-height: 25vw;
+    --thumbnails-title-height: calc(var(--thumbnails-img-height)* 0.33) 
 }
 
 
@@ -149,7 +151,11 @@ body {
     .logo {
         font-size: 3em;
     }
-
+    .main-class.hidden {
+        --thumbnails-img-width: 18vw;
+        --thumbnails-img-height: 13vw;
+        --thumbnails-title-height: calc(var(--thumbnails-img-height)* 0.25)
+    }
     .thumbnails-list {
         flex-direction: column;
         flex-wrap: nowrap;

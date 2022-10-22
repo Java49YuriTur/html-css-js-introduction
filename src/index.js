@@ -16,9 +16,9 @@ for(let i = 0; i < anchors.length; i++) {
         setDetails(anchors[i]);
     })
 }
-function showDetails() {
+function showDetails() {                /*Click on img to remove hidden */
     mainClass.classList.remove(HIDDEN);
 }
-function hideDetails() {
+function hideDetails() {          /* When you click the Hide-details button, delete Details-image and turn Hidden*/
     mainClass.classList.add(HIDDEN);
 }
