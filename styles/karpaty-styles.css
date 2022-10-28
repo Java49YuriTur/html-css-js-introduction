@@ -45,7 +45,6 @@ body {
     flex-direction: column;
     justify-content: center;
     flex-grow: 1;
-    background-color: rgb(186, 201, 215);
 }
 .main-class.hidden {
     --thumbnails-img-width: 35vw;
@@ -62,8 +61,9 @@ body {
     transition: 5s cubic-bezier(0.1, 2, 0.9, 1);
 
 }
+
 .hidden .details-container {
-    display: none;           
+    display: none;
 }
 
 .details-frame {
@@ -141,73 +141,56 @@ body {
     margin-left: 1vw;
 }
 .is-point {
-    transform: scale(0.001);
-    transition: 0s;
+     transform: scale(0.001);  
+     transition: 0s; 
 }
-
 @media(min-width: 560px) {
     :root {
-        --thumbnails-img-width: 18vw;
-        --thumbnails-img-height: 13vw;
+        --thumbnails-img-width: 12vw;
+        --thumbnails-img-height: 8vw;
         --thumbnails-title-height: calc(var(--thumbnails-img-height)* 0.25)
     }
 
     .logo {
-        font-size: 3em;
+        font-size: 1.8em;
     }
-    .main-class.hidden {
-        --thumbnails-img-width: 18vw;
-        --thumbnails-img-height: 13vw;
-        --thumbnails-title-height: calc(var(--thumbnails-img-height)* 0.25)
-    }
+
     .thumbnails-list {
         flex-direction: column;
         flex-wrap: nowrap;
         max-height: 75vh;
         order: -1;
         justify-content: flex-start;
-        width: 25vw;
-        background-color: rgb(205, 220, 220);
-        padding-left:10vw;
-        
-        
     }
-    
     .hidden .thumbnails-list {
         flex-direction: row;
-        flex-wrap: wrap;   
-        width: 90vw;
-        max-height: 80vh;
+        flex-wrap: wrap;
         justify-content: space-around;
-        padding-right: 10vw;
-          
+        align-items: flex-start;
     }
-    .hidden .thumbnails-item {
-        margin: 3vw;
-    }
-    
-    .hidden .thumbnails-title {
-        font-size: 2.5em;
-    }
-    
+
     .main-class {
         flex-direction: row;
         justify-content: space-around;
 
+    }
+    .hidden.main-class {
+        --thumbnails-img-width: 18vw;
+        --thumbnails-img-height: 12vw;
+        --thumbnails-title-height: calc(var(--thumbnails-img-height)* 0.25)
     }
 
     .details-image {
         width: 45vw;
         height: 38vw;
     }
-    
+
     .details-container {
         justify-content: center;
         align-items: center;
         margin-bottom: 0;
     }
-
-
+    
     @media (min-width: 900px) {
         .thumbnails-list {
             padding-right: 2vw;
@@ -216,7 +199,7 @@ body {
         }
 
         .thumbnails-title {
-            font-size: 3em;
+            font-size: 1.5em;
         }
 
         .details-container {
