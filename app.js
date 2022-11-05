@@ -1,44 +1,43 @@
-function getSymbol(digit) {
-    let codeA = 'a'.charCodeAt();                                         // getting code from symbol 
-    if(digit > 9) {                                          
-        digit =  String.fromCharCode(codeA + digit - 10);            // getting symbol from code
-    
+let ar = [];
+ar[10000] = 100;
+ar[1] = [1, 2, 3]
+console.log("length of array = ", ar.length);
+ar[0] = "hello";
+console.log("10000-th element = ", ar[10000])
+console.log("0-th element = ", ar[0])
+console.log("1-th element = ", ar[1])
+let str = "Hello";
+let arStr = Array.from(str);                       // getting array of the string's symbols
+console.log("String 'Hello' -> array is ", arStr);
+// for(let i = 0; i < arStr.length; i++) {
+//     console.log("element at index ", i, arStr[i]);
+// }
+function printLn(element, index, array) {
+    console.log("element et index ", index ,element);
 }
-  return digit;
+arStr.forEach(printLn);
+let arCodeAscii = arStr.map(function(symbol, index) {   // map - transformation
+    return index % 2 == 0 ? symbol.charCodeAt() : symbol;
+}) 
+console.log(arStr, arCodeAscii);
+let sumAscii = arStr.reduce(function(res, cur) {
+    return res + cur.charCodeAt();
+}, 0)
+console.log("sum of ascii ", sumAscii);
+console.log(arStr.reduce(function(res, cur) {
+    return res + cur
+}, ""));
+function checkTeudatZehut(teudatStrNumber) {
+    // TODO
+    // control sum for even index digit value, for odd index digit * 2
+    // control sum should be divide on 10 with no remainder
+    // example 123456782 => 1 + 4 + 3 + 8 + 5 + 3 + 7 + 7 + 2 => true
+    // 123456783 => 1 + 4 + 3 + 8 + 5 + 3 + 7 + 7 + 3 => false
 }
-function fromNumberToString(number, base) {
-   
-    number = Math.abs(number);
-    let res = "";
-    do {
-        let digit = number % base;
-        let sym = getSymbol(digit);
-        res = sym + res;
-        number = Math.trunc(number / base);
-
-    } while(number != 0);
-    return res;
-
+function generateRandomTeudatZehut() {
+    // TODO
+    // returns string of 9 symbols matching checkTeudatZheut
+    // make 8 random digits from 0 to 9
+    // 9 - th symbol should be with accordance of matching
+    // to get random digit Math.round(Math.random() * 9)
 }
-function getDigit(symbol) {
-   
-    let codeA = 'a'.charCodeAt();
-    let res = symbol < '9' ? +symbol : symbol.charCodeAt() - codeA + 10;
-    return res;
-}
-function fromStringToNumber(string, base) { 
-    string = string.toLowerCase();
-    let result = 0;
-    for (let i = 0; i < string.length; i++) {
-        let digit = getDigit(string[i]);
-        result = result * base + digit;
-    }
-    return result;
-}
-
-console.log(fromNumberToString(900550,36));
-console.log(fromStringToNumber("123",10))
-console.log(fromStringToNumber("10", 16))
-
-
-
