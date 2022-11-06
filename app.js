@@ -1,43 +1,71 @@
-let ar = [];
-ar[10000] = 100;
-ar[1] = [1, 2, 3]
-console.log("length of array = ", ar.length);
-ar[0] = "hello";
-console.log("10000-th element = ", ar[10000])
-console.log("0-th element = ", ar[0])
-console.log("1-th element = ", ar[1])
-let str = "Hello";
-let arStr = Array.from(str);                       // getting array of the string's symbols
-console.log("String 'Hello' -> array is ", arStr);
-// for(let i = 0; i < arStr.length; i++) {
-//     console.log("element at index ", i, arStr[i]);
-// }
-function printLn(element, index, array) {
-    console.log("element et index ", index ,element);
+
+const nineDigits = '012345678';
+const minDigit = 0;
+const maxDigit = 9;
+const char0 = '0'.charCodeAt();
+function checkTeudatZehut(tzStr) {
+    if(tzStr.length != nineDigits.length || isNaN(+tzStr)) {
+         console.log("TZ=", tzStr, 'valid=', false);
+        return false;
+    }
+    let ctrlSum = getControlSum(tzStr);
+    let valid = ctrlSum % 10 == 0;
+    console.log("TZ=", tzStr, "ctrlSum=", ctrlSum, 'valid=', valid);
+    return valid;
 }
-arStr.forEach(printLn);
-let arCodeAscii = arStr.map(function(symbol, index) {   // map - transformation
-    return index % 2 == 0 ? symbol.charCodeAt() : symbol;
-}) 
-console.log(arStr, arCodeAscii);
-let sumAscii = arStr.reduce(function(res, cur) {
-    return res + cur.charCodeAt();
-}, 0)
-console.log("sum of ascii ", sumAscii);
-console.log(arStr.reduce(function(res, cur) {
-    return res + cur
-}, ""));
-function checkTeudatZehut(teudatStrNumber) {
-    // TODO
-    // control sum for even index digit value, for odd index digit * 2
-    // control sum should be divide on 10 with no remainder
-    // example 123456782 => 1 + 4 + 3 + 8 + 5 + 3 + 7 + 7 + 2 => true
-    // 123456783 => 1 + 4 + 3 + 8 + 5 + 3 + 7 + 7 + 3 => false
+function getControlSum(tzStr) {
+    return Array.from(tzStr).map(function(symbol, ind) {
+        let value = symbol.charCodeAt() - char0;
+        return ind % 2 == 0 ? getEvenValue(value) : getOddValue(value*2);
+    }).reduce(function(sum, cur) {
+        return sum+cur;
+    }, 0);
 }
-function generateRandomTeudatZehut() {
-    // TODO
-    // returns string of 9 symbols matching checkTeudatZheut
-    // make 8 random digits from 0 to 9
-    // 9 - th symbol should be with accordance of matching
-    // to get random digit Math.round(Math.random() * 9)
+function getOddValue(number) {
+    return number<10 ? number : number%10 + Math.trunc(number/10);
 }
+function getEvenValue(number) {
+    return number;
+}
+//====================================================================
+function generateTeudatZehut() {
+    let array = getGeneratedArray();
+    array[8] = updateCtrlDigit(array);
+    if(!checkTeudatZehut(integerArray2String(array))) {
+        console.log('Generation failed');
+    }
+}
+function getGeneratedArray() {
+    return Array.from(nineDigits).map(function(symbol, ind) {
+        let value = (ind==8) ? 0 : getRandomIntegerValue(minDigit, maxDigit+1);
+        return ind % 2 == 0 ? getEvenValue(value) : getOddValue(value*2);
+    });
+}
+function integerArray2String(array) {
+    return array.reduce(function(str, cur) {
+        return str + String.fromCharCode(cur+char0);
+    }, "");
+}
+function updateCtrlDigit(array) {
+    let sum = getControlSum(integerArray2String(array));
+    let roundedSum = Math.floor(sum/10)*10;
+    if(roundedSum === sum) {
+        return 0;
+    } 
+    return roundedSum+10-sum;
+}
+function getRandomIntegerValue(min, max) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    // The maximum is exclusive and the minimum is inclusive
+    return Math.floor(Math.random() * (max - min) + min); 
+}
+// Tests
+checkTeudatZehut('311769103');
+checkTeudatZehut('311769129');
+checkTeudatZehut('311759129');
+checkTeudatZehut('336097183');
+checkTeudatZehut('33609183');
+checkTeudatZehut('33609as83');
+checkTeudatZehut('012345674');
+generateTeudatZehut();
