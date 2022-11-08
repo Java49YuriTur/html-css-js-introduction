@@ -1,71 +1,54 @@
-
-const nineDigits = '012345678';
-const minDigit = 0;
-const maxDigit = 9;
-const char0 = '0'.charCodeAt();
-function checkTeudatZehut(tzStr) {
-    if(tzStr.length != nineDigits.length || isNaN(+tzStr)) {
-         console.log("TZ=", tzStr, 'valid=', false);
-        return false;
+function getNumberOddIndex(element) {
+    let res = element * 2;
+    if (res > 9) {
+        res -= 9;
     }
-    let ctrlSum = getControlSum(tzStr);
-    let valid = ctrlSum % 10 == 0;
-    console.log("TZ=", tzStr, "ctrlSum=", ctrlSum, 'valid=', valid);
-    return valid;
+    return res;
 }
-function getControlSum(tzStr) {
-    return Array.from(tzStr).map(function(symbol, ind) {
-        let value = symbol.charCodeAt() - char0;
-        return ind % 2 == 0 ? getEvenValue(value) : getOddValue(value*2);
-    }).reduce(function(sum, cur) {
-        return sum+cur;
+function getCurrentNumber(element, index) {
+    return index % 2 == 0 ? +element : getNumberOddIndex(element);
+}
+function getArrayForSum(teudatStrNumber) {
+    let array = Array.from(teudatStrNumber);
+    return array.map(getCurrentNumber);
+}
+
+function getSum(array) {
+    // let res = 0;
+    // for (let i = 0; i < array.length; i++) {
+    //     res += array[i];
+    // }
+    return array.reduce(function (res, cur) {
+        return res + cur;
     }, 0);
 }
-function getOddValue(number) {
-    return number<10 ? number : number%10 + Math.trunc(number/10);
-}
-function getEvenValue(number) {
-    return number;
-}
-//====================================================================
-function generateTeudatZehut() {
-    let array = getGeneratedArray();
-    array[8] = updateCtrlDigit(array);
-    if(!checkTeudatZehut(integerArray2String(array))) {
-        console.log('Generation failed');
+
+function checkTeudatZehut(teudatStrNumber) {
+    //TODO
+    //control sum of for even index digit value, for odd index digit * 2
+    //control sum should be divide on 10 with no remainder
+    //example 123456782 => 1 + 4 +3 + 8 +5 + 3 + 7 + 7 + 2 => true
+    //    123456783 => 1 + 4 +3 + 8 +5 + 3 + 7 + 7 + 3 => false
+    let res = false;
+    if (teudatStrNumber.length == 9 && !isNaN(teudatStrNumber)) {
+        let arrayForSum = getArrayForSum(teudatStrNumber);
+        let sum = getSum(arrayForSum);
+        res = sum % 10 == 0;
     }
+    return res
+
 }
-function getGeneratedArray() {
-    return Array.from(nineDigits).map(function(symbol, ind) {
-        let value = (ind==8) ? 0 : getRandomIntegerValue(minDigit, maxDigit+1);
-        return ind % 2 == 0 ? getEvenValue(value) : getOddValue(value*2);
-    });
+function generateRandomTeudatZehut() {
+    //TODO
+
+    //9 - th symbol should be with accordance of matching
+    //to get random digit Math.round(Math.random() * 9)
 }
-function integerArray2String(array) {
-    return array.reduce(function(str, cur) {
-        return str + String.fromCharCode(cur+char0);
-    }, "");
-}
-function updateCtrlDigit(array) {
-    let sum = getControlSum(integerArray2String(array));
-    let roundedSum = Math.floor(sum/10)*10;
-    if(roundedSum === sum) {
-        return 0;
-    } 
-    return roundedSum+10-sum;
-}
-function getRandomIntegerValue(min, max) {
-    min = Math.ceil(min);
-    max = Math.floor(max);
-    // The maximum is exclusive and the minimum is inclusive
-    return Math.floor(Math.random() * (max - min) + min); 
-}
-// Tests
-checkTeudatZehut('311769103');
-checkTeudatZehut('311769129');
-checkTeudatZehut('311759129');
-checkTeudatZehut('336097183');
-checkTeudatZehut('33609183');
-checkTeudatZehut('33609as83');
-checkTeudatZehut('012345674');
-generateTeudatZehut();
+//TEST
+ console.log(checkTeudatZehut('123456783'));
+ console.log(checkTeudatZehut('345400543'));
+//TEST
+  let numbers =['123456782', '1234', 'abcd123', '123456783'];
+  numbers.forEach(function(e) {
+    console.log(`teudat zehut: ${e}, return of the method checkTeudatZheut: ${checkTeudatZehut(e)} `)
+  });
