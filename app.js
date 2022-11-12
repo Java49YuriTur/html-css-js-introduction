@@ -1,41 +1,55 @@
-///////////////////////Task #1////////////////////////
-let strings =["abc","lmn","cd"];
-strings = usSurround(strings);
-function usSurround(strings) {
-    strings = strings.map(function(element, ind) {
-        return '<li>' + element + '</li>';
-    });
-    strings.splice(0, 0, '<ul>');
-    strings.splice(4, 0, '</ul>');
-    return strings;     
-} 
-// Test :
-console.log(strings);
+// ////////////////////////// Task #1 ///////////////////////////////////////
+
+// function ulSurround(strings) {
+//     let res = strings.map(str => `<li>${str}</li>`); 
+//        // return `<li>${str}</li>`  // => "<li>"+ str + "</li>"
+    
+//     res.unshift("<ul>"); //res.splice(0, 0, "<ul>");
+//     res.push("</ul>");  // res.splice(strings.length, 0 , "</ul>")
+//     return res;
+// }
+// //Test :
+// let ar = ["123", "abc", "tur", "lmn"];
+// console.log(`input: ${ar} output: ${ulSurround(ar)}`);
 
 
 
-///////////////////////Task #2///////////////////////////
+////////////////////////////////// Task #2 /////////////////////////////
 
-let strings1 = ["abc", "lmn", "cd", "abc", "abc"];
-function count(strings1, s) {
-    return strings1.reduce(function(count, element) {
-        return element === s ? count +1 : count;
-    }, 0);
-}
-// Test :
-console.log('abc=', count(strings1, 'ab'));
+// function count(array, element) {
+//     return array.reduce((res, cur) => cur == element ? res + 1 : res,0);
+// }
+// //Test :
+// let str = "tur";
+// console.log(`input: ${ar} , counter of: ${str} is ${count(ar,str)} ` )
 
 
 
-///////////////////////Task #3/////////////////////////////
-let arS = [1,2,3,4,5,6,7];
-let arD = [10,20,30,40,50,60,70,];
-arrayCopy(arS, 3, arD, 4, 3);
-function arrayCopy(src, srcPos, dst, dstPos, Length) {
-    src.slice(srcPos, srcPos + Length).reverse().forEach(element => {
-        dst.splice(dstPos, 0, element);
-    });
-}
-// Test :
-console.log('arS = ',arS);
-console.log('arD = ',arD);
+///////////////////////////////// Task #3 ////////////////////////////////
+
+// function arrayCopy(src, srcPos, dst, dstPos, length) {
+//     let arForCopy = src.slice(srcPos, srcPos + length);
+//     dst.splice(dstPos, 0, ...arForCopy);
+//     //arForCopy.forEach((e, i) => dst.splice(dstPos + i, 0, e));
+//     return dst
+// }
+// //Test:
+// let ar1 = [1, 2, 3, 4, 5, 6];
+// let ar2 = [10, 30, 40, 50];
+// arrayCopy(ar1,2,ar2,1,3);
+// console.log(`ar1: ${ar1}, ar2: ${ar2} arrayCopy(ar1,2,ar2,1,3): ${ar2}`)
+
+
+
+////////////////////////////// Task #4 ///////////////////////////////////////
+
+// function move(array, index, offset) {
+//     let movedElem = array.splice(index, 1)[0];
+//     array.splice(index + offset, 0, movedElem);
+//     return array;
+// }
+// let ar = [1, 2, 3, 4 , 5, 6, 7];
+// console.log(`${ar} ${move(ar,2,1)}`)
+
+///////////////////////////////////////////////////////////////////////////////
+
