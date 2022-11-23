@@ -1,7 +1,7 @@
-function getOccurrences(word) {
-    let wordAr = Array.from(word);
+function OccurrencesInAnagram(word) {
+    let wordarray = Array.from(word);
     const occurrences = {};
-    wordAr.forEach(element => {
+    wordarray.forEach(element => {
         if (occurrences[element]) {
             occurrences[element]++;
         } else {
@@ -15,21 +15,20 @@ function isAnagram(word1, word2) {
     console.log("No length");
     return false;
   }
-  let occurrences1 = getOccurrences(word1.toLowerCase());
-  console.log('Before work', occurrences1);
+  let occurrencesInTlCase = OccurrencesInAnagram(word1.toLowerCase());
+  console.log('Before work', occurrencesInTlCase);
   let arrW2 = Array.from(word2.toLowerCase());
   for(let i = 0; i < arrW2.length; i++) {
-    if(occurrences1[arrW2[i]] == undefined) {
+    if(occurrencesInTlCase[arrW2[i]] == undefined) {
         console.log("letter doesn’t exist");
       return false;
     }
-    let oc = occurrences1[arrW2[i]-1]
-    if(oc < 0) {
-      console.log('Less than - 0 ', occurrences1);
-      return true;
+    if(--occurrencesInTlCase[arrW2[i]] < 0) {
+      console.log('Less than - 0 ', occurrencesInTlCase);
+      return false;
     }
   }
-  console.log('After work', occurrences1);
+  console.log('After work', occurrencesInTlCase);
   return true;
 }
 // TEST:
@@ -42,9 +41,6 @@ console.log( isAnagram(word, 'weloll'));
 console.log( isAnagram(word, 'leloy'));    
 console.log( isAnagram(word, 'wollet'));  
 console.log( isAnagram(word, 'weloyo'));  
-
-
-
 
 
 
