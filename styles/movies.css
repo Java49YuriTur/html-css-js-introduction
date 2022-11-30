@@ -1,58 +1,53 @@
-body {
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    background-color: rgb(28, 50, 56);  
-}
-body,
-html {
-    height: 100%;
-}
-.main-class {
-    display: flex;
-    overflow-y: auto;
-    margin-left: 2.5vw;
-    flex-direction: column;
-}
-.button {
-    margin-left: 15vw;
+.buttons {
+    margin-left: 30vw;
+    margin-top: 5vh;
     margin-bottom: 5vh;
 }
-.details-title {
-    position: relative;
-    color: white;
-    display: block;
-    text-align: center;
-    max-width: 25vh;
-    font-size: 2.0em;
-    left: 90vh;
-    bottom: 60vh;
-    background-color: rgb(122, 135, 181);
-    border: solid 3.0px rgb(186, 188, 215);
-}
-.logo {
-    display: block;
-    text-align: center;
-    font-size: 3.5em;
-}
-.details-overview {
-    max-width: 35vh;
-    left:40vw;
-    position: relative;
-    color: rgb(171, 176, 78);
-    bottom: 45vh;
-    border: solid 2.5px rgb(4, 5, 15);
-    background-color: rgb(105, 108, 121);
-}
-.movie-image {
-    height: 80vh;
-    width: 55vh;
+.movies-list {
+    max-height: 80vh;
+    overflow-y: scroll;
+    padding: 0;
+    margin: 0;
+    list-style: none;
 }
 .movie-item {
-   height: 60vh;
-   margin: 2vh;
-   display: block;
-   width: 120vh;
-   overflow: hidden;
-}
 
+    display:flex;
+    flex-direction: row;
+}
+.movie-item+.movie-item {
+    margin-top: 8vh;
+}
+.movie-text {
+    display: flex;
+    flex-direction: column;
+    height: 80vh;
+    justify-content: space-around;
+}
+.movie-overview {
+    display: block;
+    padding: 4vh;
+    height: 30vh;
+    background-color: beige;
+    font-size: 1.5em;
+    font-weight: bold;
+    border: solid 1px blue
+}
+.movie-title {
+    display: block;
+    text-align: center;
+    background-color: blue;
+    color: white;
+    font-size: 2em;
+}
+.movie-image {
+    width: 60vh;
+    height: 80vh
+}
+.active {
+    background-color: blue;
+    color: white;
+}
+body {
+    background-color: azure;
+}
