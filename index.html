@@ -4,29 +4,29 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles/movies.css">
     <title>Movies</title>
 </head>
 <body>
-    <button onclick="show(0)">show section 1</button>
-    <button onclick="show(1)">show section 2</button>
-    <button onclick="show(2)">show section 3</button>
-    <section hidden>
-        <ul class="movies-list">
-
-        </ul>
-
-    </section>
-    <section hidden>
-        <label>Kukureku</label>
-
-    </section>
-    <section hidden>
-        <label>section 3</label>
-
-    </section>
-   
-    
-    <script src="src/
-    movies.js"></script>
+    <header class="logo">
+        Movies 
+    </header>
+    <div class="button">
+        <button onclick="show(0)">All Movies</button>
+        <button onclick="show(1)">Most Popular </button>
+        <button onclick="show(2)">Least Popular</button>
+    </div>
+    <main class="main-class">
+        <section hidden>
+            <div class="movies-list"></div>
+        </section>
+        <section hidden>
+            <div class="details-popularity"></div>
+        </section>
+        <section hidden>
+            <div class="details-least"></div>
+        </section>
+    </main>
 </body>
+<script src="src/movies.js"></script>
 </html>

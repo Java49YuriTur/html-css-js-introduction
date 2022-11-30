@@ -1,0 +1,58 @@
+body {
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(28, 50, 56);  
+}
+body,
+html {
+    height: 100%;
+}
+.main-class {
+    display: flex;
+    overflow-y: auto;
+    margin-left: 2.5vw;
+    flex-direction: column;
+}
+.button {
+    margin-left: 15vw;
+    margin-bottom: 5vh;
+}
+.details-title {
+    position: relative;
+    color: white;
+    display: block;
+    text-align: center;
+    max-width: 25vh;
+    font-size: 2.0em;
+    left: 90vh;
+    bottom: 60vh;
+    background-color: rgb(122, 135, 181);
+    border: solid 3.0px rgb(186, 188, 215);
+}
+.logo {
+    display: block;
+    text-align: center;
+    font-size: 3.5em;
+}
+.details-overview {
+    max-width: 35vh;
+    left:40vw;
+    position: relative;
+    color: rgb(171, 176, 78);
+    bottom: 45vh;
+    border: solid 2.5px rgb(4, 5, 15);
+    background-color: rgb(105, 108, 121);
+}
+.movie-image {
+    height: 80vh;
+    width: 55vh;
+}
+.movie-item {
+   height: 60vh;
+   margin: 2vh;
+   display: block;
+   width: 120vh;
+   overflow: hidden;
+}
+
