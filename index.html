@@ -17,13 +17,13 @@
         </div>
         <div class="date-label">
             <label>Enter birthdate</label>
-            <input type="date" name="birthDate" required placeholder="birthdate">
+            <input type="date" name="birthDate" onchange="onChange(event)" required placeholder="birthdate">
         </div>
 
         <div class="two-inputs">
             <select name="department" required>
                 <option value hidden selected disabled>
-                    --Select Department--
+                        --Select Department--
                 </option>
                 <option value="QA">QA</option>
                 <option value="Development">Development</option>
@@ -37,9 +37,8 @@
             <button type="submit">Submit</button>
             <button type="reset">Reset</button>
         </div>
-
-
-
+        <label class="error"></label>
+            
     </form>
     <script src="src/form.js"></script>
 </body>
