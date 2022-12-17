@@ -1,56 +1,67 @@
-import { Company } from "./data/company.js";
-import { EmployeeForm } from "./ui/employeeForm.js";
-import { EmployeesList } from "./ui/EmployeesList.js";
-import { SalariesForm } from "./ui/SalariesForm.js";
-const MIN_SALARY = 1000;
-const MAX_SALARY = 40000;
-const MIN_YEAR = 1950;
+import { Library } from "./data/library.js";
+import { BookForm } from "./ui/BookForm.js";
+import { PagesForm } from "./ui/PagesForm.js";
+import { AuthorForm } from "./ui/AuthorForm.js";
+import { BooksList } from "./ui/BooksList.js";
+
+const MIN_PAGES = 50;
+const MAX_PAGES = 2000;
+const minDateString = '1980-01-01';
 const ACTIVE = "active"
 
-const listAllEmployees = new EmployeesList("employees-all");
-const listEmployeesBySalary = new EmployeesList("employees-salary");
+const listAllBooks = new BooksList("books-all");
+const listBooksByPages = new BooksList("books-pages");
+const listBookByAuthor = new BooksList("books-author");
+//======================================================
 const sectionsElement = document.querySelectorAll("section");
 const buttonsMenuElement = document.querySelectorAll(".buttons-menu *");
 /************************************************************************** */
 
-const company = new Company();
+const library = new Library();
 
-const paramsEmployeeForm = {
-    idForm: "employee_form", idDateInput: "date_input",
-    idSalaryInput: "salary_input", idDateError: "date_error", idSalaryError: "salary_error",
-    minYear: MIN_YEAR, minSalary: MIN_SALARY, maxSalary: MAX_SALARY
+const paramsBookForm = {
+    idForm: "book_form", idPagesInput: "pages_input",
+    idDateInput: "date_input", idPagesError: "pages_error", idDateError: "date_error",
+    minPages: MIN_PAGES, maxPages: MAX_PAGES, minDate: new Date(minDateString)
+};
+const bookForm = new BookForm(paramsBookForm);
+bookForm.addSubmitHandler(book => library.addBook(book));
+//=====================================================================
+//functions of Pages Form
+
+const paramsPagesForm = {
+    idForm: "pages-form", idPageFromInput: "pageFrom",
+    idPageToInput: "pageTo", idErrorMessage: "pages_form_error"
 }
-const employeeForm = new EmployeeForm(paramsEmployeeForm);
-employeeForm.addSubmitHandler((employee) => company.hireEmployee(employee))
-/************************************************************* */
-
-/********************************************************************************** */
-const paramsSalaries = {
-    idForm: "salary-form", idSalaryFromInput: "salaryFrom",
-    idSalaryToInput: "salaryTo", idErrorMessage: "salary_form_error"
-}
-const salariesForm = new SalariesForm(paramsSalaries);
-salariesForm.addSubmitHandler((salariesObj) => {
-    const employees = company.getEmployeesBySalary(salariesObj.salaryFrom,
-        salariesObj.salaryTo);
-    listEmployeesBySalary.showEmployees(employees);
-
+const pagesForm = new PagesForm(paramsPagesForm);
+pagesForm.addSubmitHandler((pagesObj) => {
+    const from = pagesObj.pageFrom;
+    const to = pagesObj.pageTo;
+    const books = library.getBooksbyPagesRange(from, to);
+    listBooksByPages.showBooks(books);
 })
 
-
-
-
+//=====================================================================================
 function showSection(index) {
     buttonsMenuElement.forEach(e => e.classList.remove(ACTIVE));
     sectionsElement.forEach(e => e.hidden = true)
     buttonsMenuElement[index].classList.add(ACTIVE);
     sectionsElement[index].hidden = false;
     if (index == 1) {
-        const employees = company.getAllEmployees();
-        listAllEmployees.showEmployees(employees)
+        const books = library.getAllBooks();
+        listAllBooks.showBooks(books);
     }
 }
 
-
-
+//=================================================
+// Functions of the Author form 
+const paramsAuthorForm = {
+    idForm: "author-form", idAuthorInput: "author"
+}
+const authorForm = new AuthorForm(paramsAuthorForm);
+authorForm.addSubmitHandler((author) => {
+    const books = library.getBooksbyAuthor(author);
+    listBookByAuthor.showBooks(books);
+})
+//=====================
 window.showSection = showSection;
